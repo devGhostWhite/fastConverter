@@ -1,3 +1,0 @@
-/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/build/CMakeFiles/fconv.dir
-/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/build/CMakeFiles/edit_cache.dir
-/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/build/CMakeFiles/rebuild_cache.dir
