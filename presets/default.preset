@@ -1,0 +1,42 @@
+# H.264 / MP4 (rápido — bom balanço velocidade/qualidade)
+mp4-fast:  -i ${input}.${extension} -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 128k -movflags +faststart ${input}.mp4;
+
+# H.264 / MP4 (máxima qualidade/compressão, mais lento)
+mp4:  -i ${input}.${extension} -c:v libx264 -preset slow -crf 18 -c:a aac -b:a 192k -movflags +faststart ${input}.mp4;
+
+# MOV (container, similar ao MP4; usa H.264)
+mov-fast:  -i ${input}.${extension} -c:v libx264 -preset veryfast -crf 23 -c:a aac -b:a 128k ${input}.mov;
+mov:  -i ${input}.${extension} -c:v libx264 -preset slow -crf 18 -c:a aac -b:a 192k ${input}.mov;
+
+# MKV (h.264 em container Matroska — bom para arquivamento)
+mkv-h264-fast:  -i ${input}.${extension} -c:v libx264 -preset veryfast -crf 23 -c:a copy ${input}.mkv;
+mkv-h264-best:  -i ${input}.${extension} -c:v libx264 -preset slow -crf 18 -c:a copy ${input}.mkv;
+
+# HEVC / H.265 (melhor compressão que H.264 — mais lento / requer suporte)
+mkv-h265-fast:  -i ${input}.${extension} -c:v libx265 -preset fast -crf 28 -c:a aac -b:a 128k ${input}.mkv;
+mkv-h265-best:  -i ${input}.${extension} -c:v libx265 -preset slow -crf 22 -c:a aac -b:a 192k ${input}.mkv;
+
+# WEBM (VP9) — variante rápida (menor tempo de encode)
+webm-vp9-fast:  -i ${input}.${extension} -c:v libvpx-vp9 -b:v 0 -crf 32 -cpu-used 2 -deadline good -row-mt 1 -threads 0 -c:a libopus -b:a 96k ${input}.webm;
+
+# WEBM (VP9) — melhor qualidade (lento)
+webm:  -i ${input}.${extension} -c:v libvpx-vp9 -b:v 0 -crf 30 -cpu-used 0 -deadline best -row-mt 1 -threads 0 -c:a libopus -b:a 128k ${input}.webm;
+
+# AV1 (opção se quiser AV1; MUITO mais lento — grande compressão)
+webm-av1-slow:  -i ${input}.${extension} -c:v libaom-av1 -crf 30 -b:v 0 -cpu-used 4 -tile-columns 1 -g 240 -aq-mode 0 -c:a libopus -b:a 128k ${input}.webm;
+
+# WEBP (animação ou single-frame em WebP)
+webp-lossy:  -i ${input}.${extension} -c:v libwebp -lossless 0 -q:v 80 -compression_level 6 -loop 0 -an -vsync 0 ${input}.webp;
+webp-lossless:  -i ${input}.${extension} -c:v libwebp -lossless 1 -compression_level 6 -loop 0 -an -vsync 0 ${input}.webp;
+
+# GIF (recomendado: gerar paleta e usar; escolha fps/scale adequado)
+gif-palettegen:  -i ${input}.${extension} -vf "fps=15,scale=640:-1:flags=lanczos,palettegen" -y ${input}_palette.png;
+gif-from-palette:  -i ${input}.${extension} -i ${input}_palette.png -lavfi "fps=15,scale=640:-1:flags=lanczos [x]; [x][1:v] paletteuse=dither=bayer" -loop 0 ${input}.gif;
+# (uso prático: executar gif-palettegen então gif-from-palette; isto gera GIFs com melhor cores)
+
+# Áudio: MP3 e Opus
+mp3-192k:  -i ${input}.${extension} -vn -c:a libmp3lame -b:a 192k ${input}.mp3;
+opus-96k:  -i ${input}.${extension} -vn -c:a libopus -b:a 96k ${input}.opus;
+
+# PNG (frame extraído sem perdas)
+png-frame:  -i ${input}.${extension} -vf "select=eq(n\,0)" -vframes 1 ${input}.png;

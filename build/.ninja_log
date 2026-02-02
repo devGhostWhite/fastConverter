@@ -1,0 +1,14 @@
+# ninja log v5
+2	648	1770075158088380369	CMakeFiles/fc.dir/src/flags.cpp.o	f7e09567c1f41578
+2	988	1770075158427134487	CMakeFiles/fc.dir/src/worker.cpp.o	7fa5864f33e98a6b
+2	484	1770075157925174462	CMakeFiles/fc.dir/src/utils.cpp.o	fc44ac7a3f66937e
+2	1126	1770009021262937446	CMakeFiles/FastConverter.dir/libs/imgui/imgui_tables.cpp.o	bb4a57a7ade97930
+1	2208	1770009022341900547	CMakeFiles/FastConverter.dir/libs/imgui/imgui.cpp.o	e1f90072f2cb0938
+2	1842	1770009021978274268	CMakeFiles/FastConverter.dir/libs/imgui/imgui_widgets.cpp.o	bf015db835110e38
+1	590	1770075158031150042	CMakeFiles/fc.dir/main.cpp.o	8695048037b40f84
+1	590	1770075158030714656	CMakeFiles/fc.dir/src/presets.cpp.o	cda304ec84356d6c
+2	1693	1770009021829186755	CMakeFiles/FastConverter.dir/libs/imgui/imgui_draw.cpp.o	5d79fe82c313d4b0
+2	182	1770009020320941578	CMakeFiles/FastConverter.dir/libs/imgui/backends/imgui_impl_opengl3.cpp.o	903e7cd7a6c47df4
+2	185	1770009020324274228	CMakeFiles/FastConverter.dir/libs/imgui/backends/imgui_impl_glfw.cpp.o	f42517d044647d02
+2	555	1770016064184858087	CMakeFiles/FastConverter.dir/main.cpp.o	9109424ae62a3afc
+988	1083	1770075158520928607	fc	36572370a6be3701

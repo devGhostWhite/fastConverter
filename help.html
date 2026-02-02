@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentação — Conversor FFmpeg</title>
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: #151515;
+      --text: #f5f5f5;
+      --muted: #b3b3b3;
+      --border: #262626;
+      --accent: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3 { font-weight: 600; letter-spacing: 0.5px; }
+
+    h1 {
+      font-size: 2.6rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: 1.4rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    p { margin-bottom: 12px; color: var(--muted); }
+
+    code {
+      background: #000;
+      padding: 4px 8px;
+      border-radius: 6px;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    pre {
+      background: #000;
+      padding: 14px;
+      border-radius: 10px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    ul { margin-left: 20px; margin-bottom: 12px; color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .card {
+      background: #101010;
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .flag {
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Conversor de Vídeo (FFmpeg Wrapper)</h1>
+    <div class="subtitle">Ferramenta de linha de comando para conversão em lote com presets e multi‑thread.</div>
+
+    <section>
+      <h2>O que o programa faz</h2>
+      <p>
+        Este programa é um <strong>wrapper do FFmpeg</strong> que automatiza conversões de vídeo usando
+        <strong>presets personalizados</strong>, suporte a múltiplos arquivos e execução paralela.
+      </p>
+      <p>
+        Ele lê comandos pré-definidos de uma pasta <code>presets/</code> e aplica variáveis dinamicamente
+        para gerar o comando final do FFmpeg.
+      </p>
+    </section>
+
+    <section>
+      <h2>Estrutura de Presets</h2>
+      <p>Cada arquivo <code>.preset</code> pode conter várias definições:</p>
+      <pre>nomeDoPreset: -i ${input}.${extension} -c:v libx264 ${input}.mp4;</pre>
+      <p>Variáveis disponíveis:</p>
+      <ul>
+        <li><code>${input}</code> → nome do arquivo sem extensão</li>
+        <li><code>${extension}</code> → extensão original</li>
+        <li><code>${outdir}</code> → diretório definido com <code>-out</code></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Uso Básico</h2>
+      <pre>./fconv video.mp4 h264</pre>
+      <p>Converte um único arquivo usando o preset informado.</p>
+    </section>
+
+    <section>
+      <h2>Flags Disponíveis</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="flag">-out &lt;dir&gt;</div>
+          <p>Define diretório de saída para os arquivos convertidos.</p>
+        </div>
+        <div class="card">
+          <div class="flag">-g [lista]</div>
+          <p>Converte múltiplos arquivos específicos.</p>
+          <pre>./fconv -g "[\"a.mp4\",\"b.mov\"]" h264</pre>
+        </div>
+        <div class="card">
+          <div class="flag">-a &lt;dir&gt;</div>
+          <p>Converte todos os vídeos de um diretório automaticamente.</p>
+          <pre>./fconv -a ./videos h264</pre>
+        </div>
+        <div class="card">
+          <div class="flag">--</div>
+          <p>Passa argumentos extras diretamente ao FFmpeg.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Multi‑thread</h2>
+      <p>
+        O programa processa vários vídeos em paralelo usando o número de threads
+        disponíveis no processador (<code>hardware_concurrency</code>).
+      </p>
+    </section>
+
+    <section>
+      <h2>Fluxo Interno</h2>
+      <ul>
+        <li>Parser de flags interpreta os argumentos</li>
+        <li>Preset é localizado e carregado</li>
+        <li>Variáveis são substituídas</li>
+        <li>Comando FFmpeg é montado</li>
+        <li>Tarefas são distribuídas entre threads</li>
+      </ul>
+    </section>
+
+    <footer>
+      Projeto de conversão em lote com FFmpeg • C++17 • DevGhostWhite
+    </footer>
+  </div>
+</body>
+</html>

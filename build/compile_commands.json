@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/build",
+  "command": "/usr/bin/g++ -g -std=gnu++17 -o CMakeFiles/fconv.dir/main.cpp.o -c \"/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/main.cpp\"",
+  "file": "/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/main.cpp",
+  "output": "CMakeFiles/fconv.dir/main.cpp.o"
+},
+{
+  "directory": "/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/build",
+  "command": "/usr/bin/g++ -g -std=gnu++17 -o CMakeFiles/fconv.dir/src/presets.cpp.o -c \"/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/src/presets.cpp\"",
+  "file": "/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/src/presets.cpp",
+  "output": "CMakeFiles/fconv.dir/src/presets.cpp.o"
+},
+{
+  "directory": "/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/build",
+  "command": "/usr/bin/g++ -g -std=gnu++17 -o CMakeFiles/fconv.dir/src/flags.cpp.o -c \"/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/src/flags.cpp\"",
+  "file": "/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/src/flags.cpp",
+  "output": "CMakeFiles/fconv.dir/src/flags.cpp.o"
+},
+{
+  "directory": "/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/build",
+  "command": "/usr/bin/g++ -g -std=gnu++17 -o CMakeFiles/fconv.dir/src/worker.cpp.o -c \"/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/src/worker.cpp\"",
+  "file": "/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/src/worker.cpp",
+  "output": "CMakeFiles/fconv.dir/src/worker.cpp.o"
+},
+{
+  "directory": "/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/build",
+  "command": "/usr/bin/g++ -g -std=gnu++17 -o CMakeFiles/fconv.dir/src/utils.cpp.o -c \"/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/src/utils.cpp\"",
+  "file": "/home/ghostwhite/Code/projects/3. ufls/projects/fastConverter/src/utils.cpp",
+  "output": "CMakeFiles/fconv.dir/src/utils.cpp.o"
+}
+]
